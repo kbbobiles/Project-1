@@ -4,8 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import project1.DBManager;
-
 public class CreditCardManager {
 	
 	// Checks if ccID exists in creditcards table

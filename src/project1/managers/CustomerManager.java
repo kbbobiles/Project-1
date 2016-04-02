@@ -1,8 +1,7 @@
 package project1.managers;
 
-import java.sql.*;
-
-import project1.DBManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class CustomerManager {
 	

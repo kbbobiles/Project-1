@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import project1.DBManager;
-
 public class MovieManager {
 	
 	// Returns a list of movies associated with a star's ID

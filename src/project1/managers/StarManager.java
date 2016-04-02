@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import project1.DBManager;
-
 public class StarManager {
 	
 	//  Returns the first ID found for given name
@@ -16,20 +14,20 @@ public class StarManager {
 		PreparedStatement statement = null;
 		ResultSet results = null;
 		
-		if (!"".equals(firstName) && !"".equals(lastName)) {
+		if (!"".equals(firstName) && !"".equals(lastName)) {	// Using both firstName and lastName
 			String fullNameSQL = "select id from stars where first_name = ? and last_name = ?";
 			statement = DBManager.getConnection().prepareStatement(fullNameSQL);
 			statement.setString(1, firstName);
 			statement.setString(2, lastName);
 			results = statement.executeQuery();
 		}
-		else if (!"".equals(firstName)) {
+		else if (!"".equals(firstName)) {	// Using only firstName
 			String firstNameSQL = "select id from stars where first_name = ?";
 			statement = DBManager.getConnection().prepareStatement(firstNameSQL);
 			statement.setString(1, firstName);
 			results = statement.executeQuery();
 		}
-		else if (!"".equals(lastName)) {
+		else if (!"".equals(lastName)) {	// Using only lastName
 			String lastNameSQL = "select id from stars where last_name = ?";
 			statement = DBManager.getConnection().prepareStatement(lastNameSQL);
 			statement.setString(1, lastName);
@@ -50,14 +48,14 @@ public class StarManager {
 	}
 	
 	// Jnserts a new Star into database
-	public static int insertStar(String firstName, String lastName, String stringDOB, String photo_url) throws SQLException {
+	public static int insertStar(String firstName, String lastName, Date dob, String photo_url) throws SQLException {
 		
 		String insertSQL = "insert into stars (first_name, last_name, dob, photo_url) values (?, ?, ?, ?)";
 		PreparedStatement statement = DBManager.getConnection().prepareStatement(insertSQL);
 		
 		statement.setString(1, firstName);
 		statement.setString(2, lastName);
-		statement.setDate(3, Date.valueOf(stringDOB));
+		statement.setDate(3, dob);
 		statement.setString(4, photo_url);
 		int affectedRows = statement.executeUpdate();
 		

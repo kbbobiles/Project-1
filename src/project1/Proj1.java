@@ -1,10 +1,13 @@
 package project1;
 
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 import project1.managers.CreditCardManager;
 import project1.managers.CustomerManager;
+import project1.managers.DBManager;
+import project1.managers.LoginManager;
 import project1.managers.MovieManager;
 import project1.managers.StarManager;
 
@@ -13,11 +16,23 @@ public class Proj1 {
 	public static void main(String[] args) {
 		
 		//DBManager db = new DBManager("jdbc:mysql:///moviedb", "root", "password");
-		DBManager.setConnection("jdbc:mysql:///moviedb", "root", "password");
+		
+		String username;
+		String password;
+		
+		// TODO: Prompt user for username and password
+		//username = PromptManager.promptString("Enter usename");
+		
+		//if (LoginManager.isLoginAuth(username, password)) {
+			DBManager.setConnection("jdbc:mysql:///moviedb", "root", "password");
+		//}
+		
+		
+		
 		
 		try {
 			
-			List<Map<String, Object>> selectResult = DBManager.executeSelectSQL("select * from sales limit 10");
+			List<Map<String, Object>> selectResult = DBManager.executeSelectSQL("select * from movies limit 100");
 			DBManager.printSelectResults(selectResult);
 			System.out.println();
 			
@@ -39,10 +54,10 @@ public class Proj1 {
 			System.out.println();
 			
 			// example insertStar() command
-			//StarManager.insertStar("Kenneth", "Bobiles", "2000-10-31", "");
+			//StarManager.insertStar("Kenneth", "Bobiles", Date.valueOf("2000-10-21"), "");
 			
-			// example insertCustomer() command
-			//CustomerManager.insertCustomer("Kenneth", "Bobiles", "490010", "", "", "");
+			// example failed insertCustomer() command		existing id 490010
+			//CustomerManager.insertCustomer("Kenneth", "Bobiles", "123213213", "", "", "");
 			
 			// example deleteCustomer() command
 			System.out.println(CustomerManager.deleteCustomer(9999999));
