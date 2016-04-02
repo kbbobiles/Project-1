@@ -9,6 +9,7 @@ import project1.managers.CustomerManager;
 import project1.managers.DBManager;
 import project1.managers.LoginManager;
 import project1.managers.MovieManager;
+import project1.managers.PromptManager;
 import project1.managers.StarManager;
 
 public class Proj1 {
@@ -26,9 +27,7 @@ public class Proj1 {
 		//if (LoginManager.isLoginAuth(username, password)) {
 			DBManager.setConnection("jdbc:mysql:///moviedb", "root", "password");
 		//}
-		
-		
-		
+				
 		
 		try {
 			
@@ -70,7 +69,7 @@ public class Proj1 {
 		}
 		
 		DBManager.close();
-		
+		PromptManager.closeScanner();
 	}
 
 }
