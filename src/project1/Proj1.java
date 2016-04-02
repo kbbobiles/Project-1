@@ -31,11 +31,13 @@ public class Proj1 {
 		
 		
 		try {
-			
+			/*
 			List<Map<String, Object>> selectResult = DBManager.executeSelectSQL("select * from movies limit 100");
 			DBManager.printSelectResults(selectResult);
 			System.out.println();
 			
+			MovieManager.printMovies(MovieManager.moviesWithStarID(4444444));
+			System.out.println();
 			// Kristen Kreuk's ID in movieDB is 911
 			MovieManager.printMovies(MovieManager.moviesWithStarID(911));
 			System.out.println();
@@ -54,18 +56,23 @@ public class Proj1 {
 			System.out.println();
 			
 			// example insertStar() command
-			//StarManager.insertStar("Kenneth", "Bobiles", Date.valueOf("2000-10-21"), "");
+			//StarManager.insertStar("Kenneth", "Bobiles", Date.valueOf("2000/02/10".replace("/", "-")), "");
 			
 			// example failed insertCustomer() command		existing id 490010
-			//CustomerManager.insertCustomer("Kenneth", "Bobiles", "123213213", "", "", "");
+			//CustomerManager.insertCustomer("Kenneth", "Bobiles", "490010", "", "", "");
 			
 			// example deleteCustomer() command
-			System.out.println(CustomerManager.deleteCustomer(9999999));
+			//System.out.println(CustomerManager.deleteCustomer("490010"));
 			System.out.println();
 			
-			DBManager.printDatabaseMetadata();
+			// example printDatabaseMetadata() command
+			//DBManager.printDatabaseMetadata();
+
+			 */
 			
-		} catch (SQLException e) {
+			//Menu.executeCommand("5");
+			
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		
