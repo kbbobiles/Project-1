@@ -79,6 +79,11 @@ public class DBManager {
 		}
 	}
 	
+	// Prints results from Update/Insert/Delete Query
+	public static void printUpdateInsertDeleteResults(int affectedRows) {
+		System.out.println(String.format("Success: %d row(s) affected", affectedRows));
+	}
+	
 	// Print out database metadata
 	public static void printDatabaseMetadata() throws SQLException {
 		

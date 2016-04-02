@@ -30,6 +30,11 @@ public class MovieManager {
 	
 	// Prints the list of movies
 	public static void printMovies(List<String> movies) {
+		if (movies.isEmpty()) {
+			System.out.println("No movies found.");
+			return;
+		}
+		
 		for (int i = 0; i < movies.size(); i++) {
 			System.out.println(String.format("%d) %s", i+1, movies.get(i)));
 		}

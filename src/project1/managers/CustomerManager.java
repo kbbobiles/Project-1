@@ -25,12 +25,13 @@ public class CustomerManager {
 	}
 	
 	// Deletes Customer from database with ID
-	public static int deleteCustomer(int id) throws SQLException {
+	public static int deleteCustomer(String ccID) throws SQLException {
 		
-		String deleteSQL = "delete from customers where id = ?";
+		// TODO: Need to handle Sales foreign key constraint
+		String deleteSQL = "delete from customers where cc_id = ?";
 		PreparedStatement statement = DBManager.getConnection().prepareStatement(deleteSQL);
 		
-		statement.setInt(1, id);
+		statement.setString(1, ccID);
 		int affectedRows = statement.executeUpdate();
 		
 		statement.close();

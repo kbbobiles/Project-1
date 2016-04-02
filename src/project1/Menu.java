@@ -2,8 +2,10 @@ package project1;
 
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
+import project1.managers.CreditCardManager;
+import project1.managers.CustomerManager;
+import project1.managers.DBManager;
 import project1.managers.MovieManager;
 import project1.managers.PromptManager;
 import project1.managers.StarManager;
@@ -49,13 +51,23 @@ public class Menu {
 			
 		case addStarCommand:
 			// TODO: Need to implement PromptManager methods
-			String firstName = PromptManager.promptString("Enter first name: ");
-			String lastName = PromptManager.promptString("Enter last name: ");
-			Date dob = PromptManager.promptDate("Enter dob (yyyy-MM-dd): ");
-			String photo_url = PromptManager.promptString("Enter photo URL: ");
-			
 			try {
-				StarManager.insertStar(firstName, lastName, dob, photo_url);
+				String starFirstName = "";
+				String starLastName = "";
+				String starFullName = PromptManager.promptString("Enter name: ");
+				String[] splitStarFullName = starFullName.split(" ");
+				if (splitStarFullName.length == 1) {
+					starLastName = splitStarFullName[0];
+				}
+				else {
+					starFirstName = splitStarFullName[0];
+					starLastName = splitStarFullName[1];
+				}
+				
+				Date dob = PromptManager.promptDate("Enter dob (yyyy-MM-dd): ");
+				String photo_url = PromptManager.promptString("Enter photo URL: ");
+			
+				StarManager.insertStar(starFirstName, starLastName, dob, photo_url);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -63,19 +75,64 @@ public class Menu {
 			break;
 		
 		case addCustomerCommand:
-			System.out.println("Add Customer Command");
+			try {
+				String addCCID = PromptManager.promptString("Enter a registered credit card ID: ");
+				if (CreditCardManager.isCreditCardIDRegistered(addCCID)) {
+					String customerFirstName = "";
+					String customerLastName = "";
+					String customerFullName = PromptManager.promptString("Enter name: ");
+					String[] splitCustomerFullName = customerFullName.split(" ");
+					if (splitCustomerFullName.length == 1) {
+						customerLastName = splitCustomerFullName[0];
+					}
+					else {
+						customerFirstName = splitCustomerFullName[0];
+						customerLastName = splitCustomerFullName[1];
+					}
+					
+					String address = PromptManager.promptString("Enter address: ");
+					String email = PromptManager.promptString("Enter email: ");
+					String password = PromptManager.promptString("Enter password: ");
+					
+					CustomerManager.insertCustomer(customerFirstName, customerLastName, addCCID, address, email, password);
+				}
+				else {
+					System.out.println(String.format("Invalid credit card '%s'", addCCID));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			break;
 			
 		case deleteCustomerCommand:
-			System.out.println("Delete Customer Command");
+			try {
+				String deleteCCID = PromptManager.promptString("Enter credit card ID: ");
+				CustomerManager.deleteCustomer(deleteCCID);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			break;
 			
 		case printMetadataCommand:
-			System.out.println("Print Metadata Command");
+			try {
+				DBManager.printDatabaseMetadata();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			break;
 			
 		case executeSQLCommand:
-			System.out.println("Execute SQL Command");
+			try {
+				String commandSQL = PromptManager.promptString("Enter SQL command: ");
+				if (commandSQL.startsWith("SELECT")) {
+					DBManager.printSelectResults(DBManager.executeSelectSQL(commandSQL));
+				}
+				else if (commandSQL.startsWith("UPDATE") || commandSQL.startsWith("INSERT") || commandSQL.startsWith("DELETE")) {
+					DBManager.printUpdateInsertDeleteResults(DBManager.executeUpdateInsertDeleteSQL(commandSQL));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			break;
 			
 		case exitMenuCommand:
