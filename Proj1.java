@@ -1,27 +1,23 @@
-package Project1;
+package project1;
 
 import java.sql.*;
+import java.util.*;
 
 public class Proj1 {
 	
 	public static void main(String[] args) {
 		
-		DBContext db = new DBContext("jdbc:mysql:///moviedb", "root", "password");
+		DBManager db = new DBManager("jdbc:mysql:///moviedb", "root", "password");
 		
 		try {
-			ResultSet result = db.executeSelectSQL("SELECT * FROM sales");
-			while (result.next())
-	            {
-				
-				ResultSetMetaData metadata = result.getMetaData();
-	            
-	            // Print type of each attribute
-	            for (int i = 1; i <= metadata.getColumnCount(); i++) {
-	            		System.out.println(String.format("%s: %s", metadata.getColumnName(i), result.getObject(i).toString()));
-	            }
-				System.out.println();
-			}
-			//System.out.println(db.executeUpdateSQL("DELETE FROM genres WHERE ID = 888888"));
+			
+			List<Map<String, Object>> selectResult = db.executeSelectSQL("SELECT * FROM movies");
+			db.printSelectResults(selectResult);
+			
+			// Kristen Kreuk's ID in movieDB is 911
+			db.printMovies(db.moviesWithStarID(911));
+			System.out.println();
+			db.printMovies(db.moviesWithStarID(db.selectStar("Kristin", "Kreuk")));
 			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
