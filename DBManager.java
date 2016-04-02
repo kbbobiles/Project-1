@@ -36,6 +36,7 @@ public class DBManager {
 	public int executeUpdateInsertDeleteSQL(String sql) throws SQLException {
 		Statement statement = connection.createStatement();
 		int rowsAffected = statement.executeUpdate(sql);
+		statement.close();
 		return rowsAffected;
 	}
 	
