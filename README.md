@@ -6,6 +6,7 @@ Create these packages in the src folder in a new Java Eclipse Project:
     
 Then add the .java files to their specific packages
 
+```
 File Tree Setup:
     -src
         -project1
@@ -16,3 +17,4 @@ File Tree Setup:
                 -StarManager.java
             -DBManager.java
             -Proj1.java
+```
