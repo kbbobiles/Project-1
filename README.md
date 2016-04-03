@@ -6,19 +6,13 @@
 
 3) Download mysql-connector-java-VERSION-bin.jar and place it in the lib folder
 
-4) Right-click project -> Build Path -> Configure Build Path. 
+4) Right click the mysql-connector jar file -> Build Path -> Add to Build Path
 
-5) Click on the Libraries tab and click Add JARs and add the mysql connector jar you downloaded in the lib folder
+5) Copy project1 into src folder
 
-6) Create these packages in the src folder
+6) Change MySQL username/password to connect to your localhost machine
 
-    'project1'
-
-    'project1.managers'
-    
-7) Then add the .java files to their specific packages
-
-8) Run Proj1.java
+7) Run Proj1.java
 
 ```
 File Tree Setup:
@@ -27,8 +21,11 @@ File Tree Setup:
             -managers
                 -CreditCardManager.java
                 -CustomerManager.java
+                -DBManager.java
+                -LoginManager.java
                 -MovieManager.java
+                -PromptManager.java
                 -StarManager.java
-            -DBManager.java
+            -Menu.java
             -Proj1.java
 ```
