@@ -49,7 +49,7 @@ public class DBManager {
 		// Converts the results to a Java list of rows
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 		while (results.next()) {
-			Map<String, Object> row = new HashMap<String, Object>();
+			Map<String, Object> row = new LinkedHashMap<String, Object>();
 			for (int i = 1; i <= metadata.getColumnCount(); i++) {
 				row.put(metadata.getColumnName(i), results.getObject(i));
 			}
@@ -65,10 +65,14 @@ public class DBManager {
 	
 	// Prints results from Select Query, all rows
 	public static void printSelectResults(List<Map<String, Object>> results) {
+		if (results.isEmpty()) {
+			System.out.println("No results found.");
+			return;
+		}
+		
 		for (int i = 0; i < results.size(); i++) {
 			System.out.println(String.format("===============%d===============", i+1));
 			printMap(results.get(i));
-			System.out.println();
 		}
 	}
 	

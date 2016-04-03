@@ -1,43 +1,19 @@
 package project1.managers;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MovieManager {
 	
 	// Returns a list of movies associated with a star's ID
-	public static List<String> moviesWithStarID(int starID) throws SQLException {
-		
-		String selectSQL = "select m.title from stars s, movies m, stars_in_movies sim where s.id = sim.star_id and m.id = sim.movie_id and s.id = ?";
-		PreparedStatement statement = DBManager.getConnection().prepareStatement(selectSQL);
-		
-		statement.setInt(1, starID);
-		ResultSet results = statement.executeQuery();
-		
-		List<String> movies = new ArrayList<String>();
-		while (results.next()) {
-			movies.add(results.getString("title"));
-		}
-		
-		statement.close();
-		results.close();
+	public static List<Map<String, Object>> moviesWithStarID(int starID) throws SQLException {
+
+		String selectSQL = "select m.id as ID, m.title as Title, m.year as Year, m.director as Director, m.banner_url as 'Banner URL', m.trailer_url as 'Trailer URL' from stars s, movies m, stars_in_movies sim where s.id = sim.star_id and m.id = sim.movie_id and s.id = %d";
+		List<Map<String, Object>> movies = DBManager.executeSelectSQL(String.format(selectSQL, starID));
 		
 		return movies;
 	}
 	
-	// Prints the list of movies
-	public static void printMovies(List<String> movies) {
-		if (movies.isEmpty()) {
-			System.out.println("No movies found.");
-			return;
-		}
-		
-		for (int i = 0; i < movies.size(); i++) {
-			System.out.println(String.format("%d) %s", i+1, movies.get(i)));
-		}
-	}
 
 }

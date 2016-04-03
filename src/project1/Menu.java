@@ -33,7 +33,7 @@ public class Menu {
 				String lastName = PromptManager.promptString("Enter last name (Click Enter to Leave Blank): ");
 				
 				try {
-					MovieManager.printMovies(MovieManager.moviesWithStarID(StarManager.findStarIDByName(firstName, lastName)));
+					DBManager.printSelectResults(MovieManager.moviesWithStarID(StarManager.findStarIDByName(firstName, lastName)));
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -42,7 +42,7 @@ public class Menu {
 				int starID = PromptManager.promptInt("Enter Star's ID: ");
 				
 				try {
-					MovieManager.printMovies(MovieManager.moviesWithStarID(starID));
+					DBManager.printSelectResults(MovieManager.moviesWithStarID(starID));
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -50,7 +50,6 @@ public class Menu {
 			break;
 			
 		case addStarCommand:
-			// TODO: Need to implement PromptManager methods
 			try {
 				String starFirstName = "";
 				String starLastName = "";
@@ -64,7 +63,7 @@ public class Menu {
 					starLastName = splitStarFullName[1];
 				}
 				
-				Date dob = PromptManager.promptDate("Enter dob (yyyy-MM-dd): ");
+				Date dob = PromptManager.promptDate("Enter dob (yyyy/MM/dd): ");
 				String photo_url = PromptManager.promptString("Enter photo URL: ");
 			
 				StarManager.insertStar(starFirstName, starLastName, dob, photo_url);
@@ -124,14 +123,15 @@ public class Menu {
 		case executeSQLCommand:
 			try {
 				String commandSQL = PromptManager.promptString("Enter SQL command: ");
-				if (commandSQL.startsWith("SELECT")) {
+				if (commandSQL.toUpperCase().startsWith("SELECT")) {
 					DBManager.printSelectResults(DBManager.executeSelectSQL(commandSQL));
 				}
-				else if (commandSQL.startsWith("UPDATE") || commandSQL.startsWith("INSERT") || commandSQL.startsWith("DELETE")) {
+				else if (commandSQL.toUpperCase().startsWith("UPDATE") || commandSQL.toUpperCase().startsWith("INSERT") || commandSQL.toUpperCase().startsWith("DELETE")) {
 					DBManager.printUpdateInsertDeleteResults(DBManager.executeUpdateInsertDeleteSQL(commandSQL));
 				}
+				// TODO: Maybe add else statement to catch wrong input
 			} catch (SQLException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 			break;
 			
@@ -147,15 +147,21 @@ public class Menu {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// Prints the menu
+	public static void printMenu() {
+		System.out.println(String.format("========================================\n" + 
+						  "%s: Print movies featuring a given star.\n" +
+						  "%s: Insert a new star into the database.\n" +
+						  "%s: Insert a customer into the database.\n" +
+						  "%s: Delete a customer from the database.\n" +
+						  "%s: Provide the metadata of the database.\n" +
+						  "%s: Enter a SQL query.\n" +
+						  "%s: Back to login.\n" +
+						  "%s: Quit.\n" +
+						  "========================================", findMoviesByStarCommand, addStarCommand, 
+						  addCustomerCommand, deleteCustomerCommand, printMetadataCommand, executeSQLCommand, 
+						  exitMenuCommand, exitProgramCommand));
+	}
 	
 
 }

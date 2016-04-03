@@ -1,24 +1,23 @@
 package project1.managers;
 
 import java.sql.Date;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PromptManager {
 	public static Scanner scan = new Scanner(System.in);;
 	
 	
-	// TODO: Prompts user for a string and returns a string
+	// Prompts user for a string and returns a string
 	public static String promptString(String question) {
 		
-		System.out.println(question);
+		System.out.print(question);
 		return scan.nextLine();
 	}
 	
-	// TODO: Prompts user for a int.toString() and returns an int
+	// Prompts user for a int.toString() and returns an int
 	public static int promptInt(String question) {
 		
-		System.out.println(question);
+		System.out.print(question);
 		
 		int i = -1;
 		
@@ -38,10 +37,10 @@ public class PromptManager {
 		return i;
 	}
 	
-	// TODO: Prompts user for a Date.valueOf("yyyy-MM-dd") and returns a Date
+	// Prompts user for a Date.valueOf("yyyy-MM-dd") and returns a Date
 	public static Date promptDate(String question) {
 		
-		System.out.println(question);
+		System.out.print(question);
 		
 		boolean formatCorrect = false;
 		String d = "";
