@@ -77,7 +77,7 @@ public class Proj1 {
 			 */
 			
 			Menu.printMenu();
-			Menu.executeCommand("6");
+			Menu.executeCommand("2");
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

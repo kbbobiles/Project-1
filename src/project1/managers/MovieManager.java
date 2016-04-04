@@ -43,8 +43,8 @@ public class MovieManager {
 		return movies;
 	}
 	
-	// Returns 
-	public static List<Map<String, Object>> getMovies(String firstName, String lastName) throws SQLException {
+	// Handles cases where first name and/or last name is given/not given
+	public static List<Map<String, Object>> getMoviesWithName(String firstName, String lastName) throws SQLException {
 		if (!"".equals(firstName) && !"".equals(lastName)) {	// Using both firstName and lastName
 			return moviesWithStarFullName(firstName, lastName);
 		}
