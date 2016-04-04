@@ -9,15 +9,19 @@ public class DBManager {
 
 	//=======================GETTERS and SETTERS===========================
 	
-	public static void setConnection(String url, String username, String password) {
+	public static boolean setConnection(String url, String username, String password) {
 		try {
 			//Incorporate MySQL driver
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			
 			// Get a connection to database
 			connection = DriverManager.getConnection(url, username, password);
+			System.out.println("Successfully logged in.");
+			return true;
+			
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Invalid login.");
+			return false;
 		}
 	}
 	

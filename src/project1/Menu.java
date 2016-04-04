@@ -2,6 +2,7 @@ package project1;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import project1.managers.CreditCardManager;
 import project1.managers.CustomerManager;
@@ -12,7 +13,7 @@ import project1.managers.StarManager;
 
 public class Menu {
 	
-	private static final String findMoviesByStarCommand = "1";
+	private static final String findMoviesByStarCommand = "1" ;
 	private static final String addStarCommand = "2";
 	private static final String addCustomerCommand = "3";
 	private static final String deleteCustomerCommand = "4";
@@ -167,6 +168,5 @@ public class Menu {
 						  addCustomerCommand, deleteCustomerCommand, printMetadataCommand, executeSQLCommand, 
 						  exitMenuCommand, exitProgramCommand));
 	}
-	
 
 }

@@ -25,11 +25,14 @@ public class Proj1 {
 		//username = PromptManager.promptString("Enter usename");
 		
 		//if (LoginManager.isLoginAuth(username, password)) {
-			DBManager.setConnection("jdbc:mysql:///moviedb", "root", "password");
+			
 		//}
 				
 		
 		try {
+			Scanner sc = new Scanner(System.in);
+			LoginManager.login(sc);
+
 			/*
 			List<Map<String, Object>> selectResult = DBManager.executeSelectSQL("select * from movies limit 100");
 			DBManager.printSelectResults(selectResult);
@@ -76,8 +79,12 @@ public class Proj1 {
 
 			 */
 			
-			Menu.printMenu();
-			Menu.executeCommand("6");
+			
+//			Menu.printMenu();
+//			Menu.executeCommand("6");
+			
+			
+			sc.close();
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
