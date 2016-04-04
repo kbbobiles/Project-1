@@ -16,11 +16,9 @@ public class DBManager {
 			
 			// Get a connection to database
 			connection = DriverManager.getConnection(url, username, password);
-			System.out.println("Successfully logged in.");
 			return true;
 			
 		} catch (Exception e) {
-			System.out.println("Invalid login.");
 			return false;
 		}
 	}
@@ -123,10 +121,12 @@ public class DBManager {
 	}
 	
 	public static void close() {
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if (LoginManager.logged_in) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				System.out.println("Failed to close connection.");
+			}
 		}
 	}
 	

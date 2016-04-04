@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.Scanner;
 
 public class PromptManager {
-	public static Scanner scan = new Scanner(System.in);;
+	public static Scanner scan = new Scanner(System.in);
 	
 	
 	// Prompts user for a string and returns a string
@@ -69,6 +69,10 @@ public class PromptManager {
 			return promptDate(question);
 		}
 		
+	}
+	
+	public static boolean quit_program(String s) {
+		return s.equals("Q") || s.equals("q");
 	}
 	
 	public static void closeScanner()

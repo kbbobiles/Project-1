@@ -7,27 +7,22 @@ public class LoginManager {
 	
 	// Checks to see if username and password is correct
 	public static boolean isLoginAuth(String username, String password) {
-		return (username == "root" && password == "password");
+		return ("root".equals(username) && "password".equals(password));
 	}
 	
-	public static void login(Scanner sc) {		
-		System.out.println("Enter Username (q to quit): ");
-		String username = sc.nextLine();
-		if (!quit_program(username)) {
-			System.out.println("Enter Password (q to quit): ");
-			String password = sc.nextLine();
-			if (!quit_program(password)) {
-				if (DBManager.setConnection("jdbc:mysql:///moviedb", username, password) == false) {
-					login(sc);
-				}
-				else {
-					logged_in = true;
-				}
+	public static void login() {		
+		String username = PromptManager.promptString("Enter Username: ");
+		String password = PromptManager.promptString("Enter Password: ");
+//		if (isLoginAuth(username, password)) {
+			if (DBManager.setConnection("jdbc:mysql:///moviedb", username, password)) {
+				System.out.println("Successfully logged in.");
+				logged_in = true;
 			}
-		}
+			else {
+				System.out.println("Invalid login.");
+				login();
+			}
+//		}
 	}
 	
-	public static boolean quit_program(String s) {
-		return s.equals("Q") || s.equals("q");
-	}
 }

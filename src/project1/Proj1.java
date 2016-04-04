@@ -30,9 +30,7 @@ public class Proj1 {
 				
 		
 		try {
-			Scanner sc = new Scanner(System.in);
-			LoginManager.login(sc);
-
+			Menu.run();
 			/*
 			List<Map<String, Object>> selectResult = DBManager.executeSelectSQL("select * from movies limit 100");
 			DBManager.printSelectResults(selectResult);
@@ -79,12 +77,13 @@ public class Proj1 {
 
 			 */
 			
+
 			
 //			Menu.printMenu();
 //			Menu.executeCommand("6");
 			
 			
-			sc.close();
+
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
