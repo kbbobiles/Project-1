@@ -11,7 +11,8 @@ public class PromptManager {
 	public static String promptString(String question) {
 		
 		System.out.print(question);
-		return scan.nextLine();
+		
+		return scan.nextLine().trim();
 	}
 	
 	// Prompts user for a int.toString() and returns an int
@@ -40,29 +41,34 @@ public class PromptManager {
 	// Prompts user for a Date.valueOf("yyyy-MM-dd") and returns a Date
 	public static Date promptDate(String question) {
 		
-		System.out.print(question);
-		
-		boolean formatCorrect = false;
-		String d = "";
-		
-		while(!formatCorrect)
-		{
-			String date = scan.nextLine();
-		
-			if(!date.matches("[0-9]{4}\\/[0-9]{2}\\/[0-9]{2}"))
-			{
-				System.out.println("Date format incorrect. Please try again.");
-				System.out.println(question);
-			}
+		try {
+			System.out.print(question);
 			
-			else
+			boolean formatCorrect = false;
+			String d = "";
+			
+			while(!formatCorrect)
 			{
-				d = date;
-				formatCorrect = true;
-			}
-		}		
+				String date = scan.nextLine();
+			
+				if(!date.matches("[0-9]{4}\\/[0-9]{2}\\/[0-9]{2}"))
+				{
+					System.out.println("Date format incorrect. Please try again.");
+					System.out.println(question);
+				}
+				
+				else
+				{
+					d = date;
+					formatCorrect = true;
+				}
+			}		
+			return Date.valueOf(d.replace("/", "-"));
+		} catch (IllegalArgumentException e) {
+			System.out.println("Date invalid.");
+			return promptDate(question);
+		}
 		
-		return Date.valueOf(d.replace("/", "-"));
 	}
 	
 	public static void closeScanner()

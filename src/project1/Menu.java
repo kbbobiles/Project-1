@@ -66,7 +66,12 @@ public class Menu {
 				Date dob = PromptManager.promptDate("Enter dob (yyyy/MM/dd): ");
 				String photo_url = PromptManager.promptString("Enter photo URL: ");
 			
-				StarManager.insertStar(starFirstName, starLastName, dob, photo_url);
+				if (StarManager.insertStar(starFirstName, starLastName, dob, photo_url) != 0) {
+					System.out.println("Insert successful.");
+				}
+				else {
+					System.out.println("Insert failed.");
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

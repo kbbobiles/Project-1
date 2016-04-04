@@ -43,11 +43,18 @@ public class Proj1 {
 			MovieManager.printMovies(MovieManager.moviesWithStarID(StarManager.findStarIDByName("Kristin", "Kreuk")));
 			System.out.println();
 			
+			
 			System.out.println(StarManager.findStarIDByName("Kristin", "Kreuk"));
 			System.out.println(StarManager.findStarIDByName("Kristin", ""));
 			System.out.println(StarManager.findStarIDByName("", "Kreuk"));
 			System.out.println(StarManager.findStarIDByName("", ""));
+			System.out.println(StarManager.findStarIDByName("dawda", ""));
 			System.out.println();
+			
+			//DBManager.printSelectResults(MovieManager.moviesWithStarFirstName("Kristin"));
+			DBManager.printSelectResults(MovieManager.getMovies("", "Kreuk"));
+			
+			
 			
 			// example isCreditCardIDRegistered() command
 			System.out.println(CreditCardManager.isCreditCardIDRegistered("0011 2233 4455 6677"));

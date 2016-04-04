@@ -50,6 +50,8 @@ public class StarManager {
 	// Jnserts a new Star into database
 	public static int insertStar(String firstName, String lastName, Date dob, String photo_url) throws SQLException {
 		
+		int affectedRows = 0;
+		
 		String insertSQL = "insert into stars (first_name, last_name, dob, photo_url) values (?, ?, ?, ?)";
 		PreparedStatement statement = DBManager.getConnection().prepareStatement(insertSQL);
 		
@@ -57,7 +59,7 @@ public class StarManager {
 		statement.setString(2, lastName);
 		statement.setDate(3, dob);
 		statement.setString(4, photo_url);
-		int affectedRows = statement.executeUpdate();
+		affectedRows = statement.executeUpdate();
 		
 		statement.close();
 		
