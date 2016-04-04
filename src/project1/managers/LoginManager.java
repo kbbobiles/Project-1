@@ -1,14 +1,12 @@
 package project1.managers;
 
-import java.util.Scanner;
-
 public class LoginManager {
 	public static boolean logged_in = false;
 	
 	// Checks to see if username and password is correct
-	public static boolean isLoginAuth(String username, String password) {
-		return ("root".equals(username) && "password".equals(password));
-	}
+//	public static boolean isLoginAuth(String username, String password) {
+//		return ("root".equals(username) && "password".equals(password));
+//	}
 	
 	public static void login() {		
 		String username = PromptManager.promptString("Enter Username: ");
@@ -21,6 +19,7 @@ public class LoginManager {
 			else {
 				System.out.println("Invalid login.");
 				login();
+				
 			}
 //		}
 	}

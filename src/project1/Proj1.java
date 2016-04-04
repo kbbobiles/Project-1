@@ -1,16 +1,7 @@
 package project1;
 
-import java.sql.*;
-import java.sql.Date;
-import java.util.*;
-
-import project1.managers.CreditCardManager;
-import project1.managers.CustomerManager;
 import project1.managers.DBManager;
-import project1.managers.LoginManager;
-import project1.managers.MovieManager;
 import project1.managers.PromptManager;
-import project1.managers.StarManager;
 
 public class Proj1 {
 	
@@ -18,8 +9,6 @@ public class Proj1 {
 		
 		//DBManager db = new DBManager("jdbc:mysql:///moviedb", "root", "password");
 		
-		String username;
-		String password;
 		
 		// TODO: Prompt user for username and password
 		//username = PromptManager.promptString("Enter usename");
