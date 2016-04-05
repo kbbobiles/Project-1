@@ -15,6 +15,18 @@ public class PromptManager {
 		return scan.nextLine().trim();
 	}
 	
+	// Prompts user for a non-empty string and returns a string
+	public static String promptRequiredString(String question) {
+		
+		String name = "";
+		while(name.equals(""))
+		{
+			System.out.print(question);
+			name = scan.nextLine().trim();
+		}
+		return name;
+	}
+	
 	// Prompts user for a int.toString() and returns an int
 	public static int promptInt(String question) {
 		

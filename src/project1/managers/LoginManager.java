@@ -12,16 +12,28 @@ public class LoginManager {
 		String username = PromptManager.promptString("Enter Username: ");
 		String password = PromptManager.promptString("Enter Password: ");
 //		if (isLoginAuth(username, password)) {
-			if (DBManager.setConnection("jdbc:mysql:///moviedb", username, password)) {
+			if (DBManager.setConnection("jdbc:mysql://localhost:3306/moviedb", username, password)) {
 				System.out.println("Successfully logged in.");
 				logged_in = true;
 			}
 			else {
-				System.out.println("Invalid login.");
-				login();
-				
+				promptTryAgain();
 			}
 //		}
+	}
+	
+	private static void promptTryAgain() {
+		String command = PromptManager.promptRequiredString("Try again? (Y) or (N): ");
+		if (command.equalsIgnoreCase("N")) {
+			PromptManager.closeScanner();
+			System.exit(1);
+		}
+		else if (command.equalsIgnoreCase("Y")) {
+			login();
+		}
+		else {
+			promptTryAgain();
+		}
 	}
 	
 }

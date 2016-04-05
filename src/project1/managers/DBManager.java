@@ -18,7 +18,14 @@ public class DBManager {
 			connection = DriverManager.getConnection(url, username, password);
 			return true;
 			
+		} catch (com.mysql.jdbc.CommunicationsException e) {
+			System.out.println("Cannot connect to database. Database down.");
+			return false;
+		} catch (SQLException e) {
+			System.out.println("Incorrect username/password.");
+			return false;
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}

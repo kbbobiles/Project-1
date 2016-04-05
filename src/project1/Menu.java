@@ -79,11 +79,10 @@ public class Menu {
 		System.out.println("Print movies featuring a given star.");
 		String queryChoice = PromptManager.promptString("Search by name (N) or id (I): ");
 		if (queryChoice.equalsIgnoreCase("N")) { // Search by name
-			String firstName = PromptManager.promptString("Enter first name (Click Enter to Leave Blank): ");
-			String lastName = PromptManager.promptString("Enter last name (Click Enter to Leave Blank): ");
+			String name = PromptManager.promptString("Enter name: ");
 			
 			try {
-				DBManager.printSelectResults(MovieManager.getMoviesWithName(firstName, lastName));
+				DBManager.printSelectResults(MovieManager.getMoviesWithName(name));
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -103,23 +102,14 @@ public class Menu {
 	private static void executeAddStarCommand() {
 		System.out.println("Insert a new star into the database.");
 		try {
-			String starFirstName = "";
-			String starLastName = "";
-			String starFullName = PromptManager.promptString("Enter name: ");
-			String[] splitStarFullName = starFullName.split(" ");
-			if (splitStarFullName.length == 1) {
-				starLastName = splitStarFullName[0];
-			}
-			else {
-				starFirstName = splitStarFullName[0];
-				starLastName = splitStarFullName[1];
-			}
-			
+			String firstName = PromptManager.promptString("Enter first name (Click Enter to Leave Blank): ");
+			String lastName = PromptManager.promptRequiredString("Enter last name (Required): ");
+
 			Date dob = PromptManager.promptDate("Enter dob (yyyy/MM/dd): ");
 			String photo_url = PromptManager.promptString("Enter photo URL: ");
 			
-			int rowsAffected = StarManager.insertStar(starFirstName, starLastName, dob, photo_url);
-			System.out.println("Inserted "+rowsAffected+" row(s) to the database.");
+			int rowsAffected = StarManager.insertStar(firstName, lastName, dob, photo_url);
+			DBManager.printUpdateInsertDeleteResults(rowsAffected);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -149,7 +139,7 @@ public class Menu {
 				String password = PromptManager.promptString("Enter password: ");
 				
 				int rowsAffected = CustomerManager.insertCustomer(customerFirstName, customerLastName, addCCID, address, email, password);
-				System.out.println("Inserted "+rowsAffected+" row(s) to the database.");
+				DBManager.printUpdateInsertDeleteResults(rowsAffected);
 			}
 			else {
 				System.out.println(String.format("Invalid credit card '%s'", addCCID));
@@ -165,7 +155,7 @@ public class Menu {
 		try {
 			String deleteCCID = PromptManager.promptString("Enter credit card ID: ");
 			int rowsAffected = CustomerManager.deleteCustomer(deleteCCID);
-			System.out.println("Inserted "+rowsAffected+" row(s) to the database.");
+			DBManager.printUpdateInsertDeleteResults(rowsAffected);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
