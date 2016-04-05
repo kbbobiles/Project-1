@@ -26,17 +26,13 @@ public class CustomerManager {
 	
 	// Deletes Customer from database with ID
 	public static int deleteCustomer(String ccID) throws SQLException {
-		
-		DBManager.executeUpdateInsertDeleteSQL("SET FOREIGN_KEY_CHECKS=0");
-		
+				
 		// TODO: Need to handle Sales foreign key constraint
 		String deleteSQL = "delete from customers where cc_id = ?";
 		PreparedStatement statement = DBManager.getConnection().prepareStatement(deleteSQL);
 		
 		statement.setString(1, ccID);
 		int affectedRows = statement.executeUpdate();
-		
-		DBManager.executeUpdateInsertDeleteSQL("SET FOREIGN_KEY_CHECKS=1");
 		
 		statement.close();
 		
