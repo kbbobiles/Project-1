@@ -1,31 +1,21 @@
 # Project-1
 
-1) Create a new Java Eclipse Project
-
-2) Create a 'lib' folder in the root of the project
-
-3) Download mysql-connector-java-VERSION-bin.jar and place it in the lib folder
-
-4) Right click the mysql-connector jar file -> Build Path -> Add to Build Path
-
-5) Copy project1 into src folder
-
-6) Change MySQL username/password to connect to your localhost machine
-
-7) Run Proj1.java
-
 ```
-File Tree Setup:
-    -src
-        -project1
-            -managers
-                -CreditCardManager.java
-                -CustomerManager.java
-                -DBManager.java
-                -LoginManager.java
-                -MovieManager.java
-                -PromptManager.java
-                -StarManager.java
-            -Menu.java
-            -Proj1.java
+==========CREATING DATABASE==========
+1) > mysql -u root -p
+2) mysql> create database moviedb;
+3) mysql> quit
+4) Navigate to sql files
+5) > mysql -u root -p -D moviedb < createtable.sql
+6) > mysql -u root -p -D moviedb < data.sql
+
+==========COMPILING PROJECT==========
+1) Navigate to Project-1/src
+2) > javac project1/Proj1.java -d ../bin
+OR
+2) > javac -classpath .;../lib/mysql-connector-java-5.0.8-bin.jar project1/Proj1.java -d ../bin
+
+===========RUNNING PROJECT===========
+3) Navigate to Project-1/bin
+4) > java -classpath .;../lib/mysql-connector-java-5.0.8-bin.jar project1.Proj1
 ```

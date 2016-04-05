@@ -23,8 +23,12 @@ CREATE TABLE moviedb.stars (
 CREATE TABLE moviedb.stars_in_movies (
 	star_id INTEGER NOT NULL,
 	movie_id INTEGER NOT NULL,
-	FOREIGN KEY (star_id) REFERENCES moviedb.stars(id),
+	FOREIGN KEY (star_id) REFERENCES moviedb.stars(id)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE,
 	FOREIGN KEY (movie_id) REFERENCES moviedb.movies(id)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 CREATE TABLE moviedb.genres (
@@ -36,8 +40,12 @@ CREATE TABLE moviedb.genres (
 CREATE TABLE moviedb.genres_in_movies (
 	genre_id INTEGER NOT NULL,
 	movie_id INTEGER NOT NULL,
-	FOREIGN KEY (genre_id) REFERENCES moviedb.genres(id),
+	FOREIGN KEY (genre_id) REFERENCES moviedb.genres(id)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE,
 	FOREIGN KEY (movie_id) REFERENCES moviedb.movies(id)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 CREATE TABLE moviedb.creditcards (
@@ -58,6 +66,8 @@ CREATE TABLE moviedb.customers (
 	password VARCHAR(20) NOT NULL,
 	PRIMARY KEY(id),
 	FOREIGN KEY (cc_id) REFERENCES moviedb.creditcards(id)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 CREATE TABLE moviedb.sales (
@@ -66,6 +76,10 @@ CREATE TABLE moviedb.sales (
 	movie_id INTEGER NOT NULL,
 	sale_date DATE NOT NULL,
 	PRIMARY KEY (id),
-	FOREIGN KEY (customer_id) REFERENCES moviedb.customers(id),
+	FOREIGN KEY (customer_id) REFERENCES moviedb.customers(id)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE,
 	FOREIGN KEY (movie_id) REFERENCES moviedb.movies(id)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
