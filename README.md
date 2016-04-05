@@ -1,3 +1,21 @@
 # Project-1
 
-For instructions, read commands.txt
+```
+==========CREATING DATABASE==========
+1) > mysql -u root -p
+2) mysql> create database moviedb;
+3) mysql> quit
+4) Navigate to sql files
+5) > mysql -u root -p -D moviedb < createtable.sql
+6) > mysql -u root -p -D moviedb < data.sql
+
+==========COMPILING PROJECT==========
+1) Navigate to Project-1/src
+2) > javac project1/Proj1.java -d ../bin
+OR
+2) > javac -classpath .;../lib/mysql-connector-java-5.0.8-bin.jar project1/Proj1.java -d ../bin
+
+===========RUNNING PROJECT===========
+3) Navigate to Project-1/bin
+4) > java -classpath .;../lib/mysql-connector-java-5.0.8-bin.jar project1.Proj1
+```
