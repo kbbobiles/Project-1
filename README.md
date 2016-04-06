@@ -11,11 +11,15 @@
 
 ==========COMPILING PROJECT==========
 1) Navigate to Project-1/src
-2) > javac project1/Proj1.java -d ../bin
-OR
+FOR WINDOWS
 2) > javac -classpath .;../lib/mysql-connector-java-5.0.8-bin.jar project1/Proj1.java -d ../bin
+FOR LINUX
+2) > javac -classpath .:../lib/mysql-connector-java-5.0.8-bin.jar project1/Proj1.java -d ../bin
 
 ===========RUNNING PROJECT===========
 3) Navigate to Project-1/bin
+FOR WINDOWS
 4) > java -classpath .;../lib/mysql-connector-java-5.0.8-bin.jar project1.Proj1
+FOR LINUX
+4) > java -classpath .:../lib/mysql-connector-java-5.0.8-bin.jar project1.Proj1
 ```
