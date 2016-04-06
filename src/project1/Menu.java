@@ -122,23 +122,13 @@ public class Menu {
 		try {
 			String addCCID = PromptManager.promptString("Enter a registered credit card ID: ");
 			if (CreditCardManager.isCreditCardIDRegistered(addCCID)) {
-				String customerFirstName = "";
-				String customerLastName = "";
-				String customerFullName = PromptManager.promptString("Enter name: ");
-				String[] splitCustomerFullName = customerFullName.split(" ");
-				if (splitCustomerFullName.length == 1) {
-					customerLastName = splitCustomerFullName[0];
-				}
-				else {
-					customerFirstName = splitCustomerFullName[0];
-					customerLastName = splitCustomerFullName[1];
-				}
-				
+				String firstName = PromptManager.promptString("Enter first name (Click Enter to Leave Blank): ");
+				String lastName = PromptManager.promptRequiredString("Enter last name (Required): ");
 				String address = PromptManager.promptString("Enter address: ");
 				String email = PromptManager.promptString("Enter email: ");
 				String password = PromptManager.promptString("Enter password: ");
 				
-				int rowsAffected = CustomerManager.insertCustomer(customerFirstName, customerLastName, addCCID, address, email, password);
+				int rowsAffected = CustomerManager.insertCustomer(firstName, lastName, addCCID, address, email, password);
 				DBManager.printUpdateInsertDeleteResults(rowsAffected);
 			}
 			else {
