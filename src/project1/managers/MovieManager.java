@@ -23,17 +23,14 @@ public class MovieManager {
 		if (!"".equals(firstName) && !"".equals(lastName)) {	// Using both firstName and lastName
 			String selectSQL = "select m.id as ID, m.title as Title, m.year as Year, m.director as Director, m.banner_url as 'Banner URL', m.trailer_url as 'Trailer URL' from stars s, movies m, stars_in_movies sim where s.id = sim.star_id and m.id = sim.movie_id and s.first_name = '%s' and s.last_name = '%s'";
 			movies = DBManager.executeSelectSQL(String.format(selectSQL, firstName, lastName));
-			System.out.println(String.format(selectSQL, firstName, lastName) );
 		}
 		else if (!"".equals(firstName)) {	// Using only firstName
 			String selectSQL = "select m.id as ID, m.title as Title, m.year as Year, m.director as Director, m.banner_url as 'Banner URL', m.trailer_url as 'Trailer URL' from stars s, movies m, stars_in_movies sim where s.id = sim.star_id and m.id = sim.movie_id and s.first_name = '%s'";
 			movies = DBManager.executeSelectSQL(String.format(selectSQL, firstName));
-			System.out.println(String.format(selectSQL, firstName) );
 		}
 		else if (!"".equals(lastName)) {	// Using only lastName
 			String selectSQL = "select m.id as ID, m.title as Title, m.year as Year, m.director as Director, m.banner_url as 'Banner URL', m.trailer_url as 'Trailer URL' from stars s, movies m, stars_in_movies sim where s.id = sim.star_id and m.id = sim.movie_id and s.last_name = '%s'";
 			movies = DBManager.executeSelectSQL(String.format(selectSQL, lastName));
-			System.out.println(String.format(selectSQL, lastName) );
 		}
 		
 		
